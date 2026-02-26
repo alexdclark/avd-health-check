@@ -12,6 +12,8 @@ class AVDHealthCheckCommandsLoader(AzCommandsLoader):
         return self.command_table
 
     def load_arguments(self, command):
-        pass
+        from azext_avd_health_check._params import load_arguments
+        load_arguments(self, command)
+
 
 COMMAND_LOADER_CLS = AVDHealthCheckCommandsLoader

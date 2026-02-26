@@ -8,10 +8,14 @@ This project is set up for local extension development, so you can edit Python f
 
 Current command group:
 
-- `az avd-health-check list`
+- `az avd-health-check host list`
+- `az avd-health-check host online`
+- `az avd-health-check host offline`
 - `az avd-health-check hello`
-- `az avd-health-check online`
-- `az avd-health-check offline`
+
+Test Functions
+- az avd-health-check lab resource-groups
+- az avd-health-check lab whoami
 
 At the moment these commands return stub/demo data from `custom.py` while you build out real Azure API calls.
 
@@ -56,10 +60,11 @@ az avd-health-check -h
 Examples:
 
 ```bash
-az avd-health-check list -g MyResourceGroup --hostpool-name MyHostPool
+az avd-health-check list -g MyResourceGroup -p MyHostPool
+az avd-health-check online -g MyResourceGroup -p MyHostPool
+az avd-health-check offline -g MyResourceGroup -p MyHostPool
+
 az avd-health-check hello
-az avd-health-check online -g MyResourceGroup --hostpool-name MyHostPool
-az avd-health-check offline -g MyResourceGroup --hostpool-name MyHostPool
 ```
 
 ## Development workflow
