@@ -17,8 +17,11 @@ if ! command -v python3 >/dev/null 2>&1; then
   exit 1
 fi
 
-export AZURE_CONFIG_DIR="${AZURE_CONFIG_DIR:-$SCRIPT_DIR/.azure}"
-mkdir -p "$AZURE_CONFIG_DIR"
+if [[ "${AVD_HEALTH_CHECK_ISOLATED_CONFIG:-}" == "1" ]]; then
+  export AZURE_CONFIG_DIR="${AZURE_CONFIG_DIR:-$SCRIPT_DIR/.azure}"
+  mkdir -p "$AZURE_CONFIG_DIR"
+fi
+
 mkdir -p dist
 
 echo "Building wheel..."
@@ -40,5 +43,9 @@ echo "Installing extension from: $WHEEL_PATH"
 az extension add --source "$WHEEL_PATH" -y >/dev/null
 
 echo "Done."
-echo "Config dir: $AZURE_CONFIG_DIR"
+if [[ -n "${AZURE_CONFIG_DIR:-}" ]]; then
+  echo "Config dir: $AZURE_CONFIG_DIR"
+else
+  echo "Config dir: default Azure CLI profile"
+fi
 echo "Installed wheel: $WHEEL_PATH"

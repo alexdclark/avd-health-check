@@ -24,3 +24,13 @@ helps["avd-health-check host offline"] = """
 type: command
 short-summary: List offline hosts.
 """
+
+helps["avd-health-check host start-all"] = """
+type: command
+short-summary: Start all stopped or unavailable hosts in a host pool.
+"""
+
+helps["avd-health-check host stop-all"] = """
+type: command
+short-summary: Deallocate all available hosts in a host pool.
+"""

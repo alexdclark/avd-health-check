@@ -55,16 +55,24 @@ az extension show -n avd-health-check
 az avd-health-check -h
 ```
 
+To rebuild into a repo-local Azure CLI profile instead, run:
+
+```bash
+AVD_HEALTH_CHECK_ISOLATED_CONFIG=1 ./rebuild_extension.sh
+```
+
 ## Run commands
 
 Examples:
 
 ```bash
-az avd-health-check list -g MyResourceGroup -p MyHostPool
-az avd-health-check online -g MyResourceGroup -p MyHostPool
-az avd-health-check offline -g MyResourceGroup -p MyHostPool
+az avd-health-check host list -g MyResourceGroup -p MyHostPool
+az avd-health-check host online -g MyResourceGroup -p MyHostPool
+az avd-health-check host offline -g MyResourceGroup -p MyHostPool
 
 az avd-health-check hello
+az avd-health-check lab whoami
+az avd-health-check lab resource-groups
 ```
 
 ## Development workflow
@@ -93,7 +101,7 @@ g.custom_command("list", "list_power_states")
 
 This means:
 
-- CLI command: `az avd-health-check list`
+- CLI command: `az avd-health-check host list`
 - Python function called: `list_power_states(...)`
 
 ## Next steps
